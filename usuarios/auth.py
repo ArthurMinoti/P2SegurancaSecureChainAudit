@@ -1,6 +1,11 @@
 import bcrypt
 import json
 import os
+import sys
+
+# Adiciona o diretório pai ao path para importações
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from config import USERS_DB
 from blockchain.blockchain import Blockchain
 
