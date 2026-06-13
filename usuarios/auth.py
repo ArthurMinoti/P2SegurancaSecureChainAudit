@@ -57,8 +57,28 @@ class AuthSystem:
         self.blockchain.add_block(f"Tentativa de login falha: Senha incorreta para {username}.")
         return None, "Usuário ou senha incorretos."
 
+    def delete_user(self, username):
+        if username not in self.users:
+            return False, f"Usuário {username} não encontrado."
+        
+        del self.users[username]
+        self.save_users()
+        self.blockchain.add_block(f"Usuário deletado: {username}")
+        return True, f"Usuário {username} deletado com sucesso."
+
+    def list_users(self):
+        if not self.users:
+            return [], "Nenhum usuário cadastrado."
+        
+        users_list = []
+        for username, data in self.users.items():
+            users_list.append({
+                "username": username,
+                "profile": data['profile']
+            })
+        return users_list, "Usuários listados com sucesso."
+
 if __name__ == "__main__":
-    # Teste simples
     auth = AuthSystem()
     # Criar admin padrão se não existir
     if 'admin' not in auth.users:
