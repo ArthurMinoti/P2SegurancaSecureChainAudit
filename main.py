@@ -7,6 +7,7 @@ Sistema de Gerenciamento com Menu Interativo
 
 import os
 import sys
+import getpass
 from config import PROJECT_ROOT
 from usuarios.auth import AuthSystem
 
@@ -83,7 +84,7 @@ class MenuPrincipal:
         print("\n--- LOGIN ---\n")
 
         username = input("Usuário: ").strip()
-        password = input("Senha: ").strip()
+        password = getpass.getpass("Senha: ").strip()
 
         user, mensagem = self.auth.login(username, password)
 
@@ -102,7 +103,7 @@ class MenuPrincipal:
         print("\n--- CRIAR NOVO USUÁRIO ---\n")
 
         username = input("Usuário: ").strip()
-        password = input("Senha: ").strip()
+        password = getpass.getpass("Senha: ").strip()
         
         print("\nPerfis disponíveis:")
         print("1. admin (Administrador)")
