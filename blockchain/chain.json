@@ -12,5 +12,12 @@
         "event": "BACKUP EXECUTADO COM SUCESSO",
         "previous_hash": "16f2e348a7797cfd52fd8f77f545a891d0179d397ae40d65102a30b751a8e73c",
         "hash": "23db35959e9fe344a004b9e5b65dea591aa180fec81048456fd849f447eaa5e3"
+    },
+    {
+        "index": 2,
+        "timestamp": "2026-06-15T14:25:51.232182",
+        "event": "RELAT\u00d3RIO DE AUDITORIA GERADO",
+        "previous_hash": "23db35959e9fe344a004b9e5b65dea591aa180fec81048456fd849f447eaa5e3",
+        "hash": "280130bb6baa20e62c153fd6b385d367c3fdb9e03ea7feee5998f621e02f02e6"
     }
 ]
