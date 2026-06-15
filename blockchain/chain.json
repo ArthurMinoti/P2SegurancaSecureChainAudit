@@ -1,0 +1,86 @@
+[
+    {
+        "index": 0,
+        "timestamp": "2026-06-15T13:51:39.758142",
+        "event": "Genesis Block - SecureChain Audit Initialized",
+        "previous_hash": "0",
+        "hash": "16f2e348a7797cfd52fd8f77f545a891d0179d397ae40d65102a30b751a8e73c"
+    },
+    {
+        "index": 1,
+        "timestamp": "2026-06-15T14:12:39.081374",
+        "event": "BACKUP EXECUTADO COM SUCESSO",
+        "previous_hash": "16f2e348a7797cfd52fd8f77f545a891d0179d397ae40d65102a30b751a8e73c",
+        "hash": "23db35959e9fe344a004b9e5b65dea591aa180fec81048456fd849f447eaa5e3"
+    },
+    {
+        "index": 2,
+        "timestamp": "2026-06-15T14:25:51.232182",
+        "event": "RELAT\u00d3RIO DE AUDITORIA GERADO",
+        "previous_hash": "23db35959e9fe344a004b9e5b65dea591aa180fec81048456fd849f447eaa5e3",
+        "hash": "280130bb6baa20e62c153fd6b385d367c3fdb9e03ea7feee5998f621e02f02e6"
+    },
+    {
+        "index": 3,
+        "timestamp": "2026-06-15T14:52:15.360533",
+        "event": "Tentativa de login falha: Usu\u00e1rio  n\u00e3o encontrado.",
+        "previous_hash": "280130bb6baa20e62c153fd6b385d367c3fdb9e03ea7feee5998f621e02f02e6",
+        "hash": "b45db96cc8d3eafaa4cdb4b0060210dc4567cd391928df8fdf1492273b775244"
+    },
+    {
+        "index": 4,
+        "timestamp": "2026-06-15T14:52:26.903671",
+        "event": "USUARIO CRIADO: lucasms (admin)",
+        "previous_hash": "b45db96cc8d3eafaa4cdb4b0060210dc4567cd391928df8fdf1492273b775244",
+        "hash": "b86d926639ba5dbfd3632b254c232af436f6d0e6fd47e22ed41c5cf2e637c61b"
+    },
+    {
+        "index": 5,
+        "timestamp": "2026-06-15T14:52:35.702359",
+        "event": "LOGIN HACKER: lucasms (admin)",
+        "previous_hash": "b86d926639ba5dbfd3632b254c232af436f6d0e6fd47e22ed41c5cf2e637c61b",
+        "hash": "11eef54bf11b624beb3a63b5f684fe87b97e563ba19a16e33bdacead815bd87b"
+    },
+    {
+        "index": 6,
+        "timestamp": "2026-06-15T14:55:33.667457",
+        "event": "LOGIN REALIZADO: lucasms (admin)",
+        "previous_hash": "11eef54bf11b624beb3a63b5f684fe87b97e563ba19a16e33bdacead815bd87b",
+        "hash": "69fb493c58bdd0cd974fde29f9d76c9a84b1f94ea622cea826dc86a3aae60b4b"
+    },
+    {
+        "index": 7,
+        "timestamp": "2026-06-15T15:06:16.069013",
+        "event": "USUARIO CRIADO: asdasd (admin)",
+        "previous_hash": "69fb493c58bdd0cd974fde29f9d76c9a84b1f94ea622cea826dc86a3aae60b4b",
+        "hash": "0ee5b977baca389bed026e5172f235281b081d3ec2b55eaf953140dd61c6b3e1"
+    },
+    {
+        "index": 8,
+        "timestamp": "2026-06-15T15:06:56.429445",
+        "event": "LOGIN REALIZADO: lucasms (admin)",
+        "previous_hash": "0ee5b977baca389bed026e5172f235281b081d3ec2b55eaf953140dd61c6b3e1",
+        "hash": "22afe1d884487af5acf05cfdaefde12d0c46e386ed163302ea01d6953cf78774"
+    },
+    {
+        "index": 9,
+        "timestamp": "2026-06-15T15:07:25.807246",
+        "event": "USUARIO REMOVIDO: asdasd",
+        "previous_hash": "22afe1d884487af5acf05cfdaefde12d0c46e386ed163302ea01d6953cf78774",
+        "hash": "928a220861e29366f123d1502c245c43a62896d9bb923b9e7cf965cf3d26ae3a"
+    },
+    {
+        "index": 10,
+        "timestamp": "2026-06-15T15:20:20.849131",
+        "event": "USUARIO CRIADO: usuario1 (analista)",
+        "previous_hash": "928a220861e29366f123d1502c245c43a62896d9bb923b9e7cf965cf3d26ae3a",
+        "hash": "d05227f5e5d9e881b354bab13612efefa6b7e2d1f939c1aa058e2a82739c3dd6"
+    },
+    {
+        "index": 11,
+        "timestamp": "2026-06-15T15:20:57.264509",
+        "event": "LOGIN REALIZADO: usuario1 (analista)",
+        "previous_hash": "d05227f5e5d9e881b354bab13612efefa6b7e2d1f939c1aa058e2a82739c3dd6",
+        "hash": "98da8d8e2420bfe7c8f21f9932207d869588e1d1d30b7162d67bf9163b31d1c4"
+    }
+]

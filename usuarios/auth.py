@@ -28,9 +28,12 @@ class AuthSystem:
     def register_user(self, username, password, profile):
         if username in self.users:
             return False, "Usuário já existe."
-        
         if profile not in ['admin', 'analista', 'visitante']:
             return False, "Perfil inválido."
+        if len(username) > 30:
+            return False, "Usuário muito longo."
+        if len(password) < 6:
+            return False, "Senha deve ter pelo menos 6 caracteres."
 
         # Hash da senha com bcrypt
         salt = bcrypt.gensalt()
@@ -41,7 +44,7 @@ class AuthSystem:
             "profile": profile
         }
         self.save_users()
-        self.blockchain.add_block(f"Usuário criado: {username} (Perfil: {profile})")
+        self.blockchain.add_block(f"USUARIO CRIADO: {username} ({profile})")
         return True, f"Usuário {username} cadastrado com sucesso."
 
     def login(self, username, password):
@@ -51,7 +54,7 @@ class AuthSystem:
 
         user_data = self.users[username]
         if bcrypt.checkpw(password.encode(), user_data['password'].encode()):
-            self.blockchain.add_block(f"Login realizado: {username} (Perfil: {user_data['profile']})")
+            self.blockchain.add_block(f"LOGIN REALIZADO: {username} ({user_data['profile']})")
             return {"username": username, "profile": user_data['profile']}, "Login bem-sucedido."
         
         self.blockchain.add_block(f"Tentativa de login falha: Senha incorreta para {username}.")
@@ -63,7 +66,7 @@ class AuthSystem:
         
         del self.users[username]
         self.save_users()
-        self.blockchain.add_block(f"Usuário deletado: {username}")
+        self.blockchain.add_block(f"USUARIO REMOVIDO: {username}")
         return True, f"Usuário {username} deletado com sucesso."
 
     def list_users(self):

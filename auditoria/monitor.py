@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import time
 import hashlib
 from datetime import datetime
 
@@ -15,7 +16,6 @@ sys.path.insert(0, BASE_DIR)
 from blockchain.blockchain import Blockchain
 
 # Diretórios
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DOCUMENTOS_DIR = os.path.join(BASE_DIR, "documentos")
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
@@ -27,6 +27,7 @@ LOG_FILE = os.path.join(LOGS_DIR, "monitor.log")
 class MonitorIntegridade:
 
     def __init__(self):
+
         self.blockchain = Blockchain()
 
         os.makedirs(LOGS_DIR, exist_ok=True)
@@ -60,6 +61,7 @@ class MonitorIntegridade:
                 caminho = os.path.join(raiz, arquivo)
 
                 try:
+
                     hash_arquivo = self.calcular_hash(caminho)
 
                     caminho_relativo = os.path.relpath(
@@ -84,7 +86,12 @@ class MonitorIntegridade:
 
         try:
 
-            with open(HASH_FILE, "r") as arquivo:
+            with open(
+                HASH_FILE,
+                "r",
+                encoding="utf-8"
+            ) as arquivo:
+
                 return json.load(arquivo)
 
         except Exception:
@@ -93,11 +100,17 @@ class MonitorIntegridade:
 
     def salvar_hashes(self, hashes):
 
-        with open(HASH_FILE, "w") as arquivo:
+        with open(
+            HASH_FILE,
+            "w",
+            encoding="utf-8"
+        ) as arquivo:
+
             json.dump(
                 hashes,
                 arquivo,
-                indent=4
+                indent=4,
+                ensure_ascii=False
             )
 
     def registrar_log(self, mensagem):
@@ -110,8 +123,29 @@ class MonitorIntegridade:
 
         print(linha)
 
-        with open(LOG_FILE, "a") as log:
+        with open(
+            LOG_FILE,
+            "a",
+            encoding="utf-8"
+        ) as log:
+
             log.write(linha + "\n")
+
+    def gerar_alerta(self, evento):
+
+        alerta = (
+            "\n"
+            "=====================================\n"
+            " ALERTA DE INTEGRIDADE DETECTADO\n"
+            f" {evento}\n"
+            "====================================="
+        )
+
+        print(alerta)
+
+        self.registrar_log(
+            f"ALERTA: {evento}"
+        )
 
     def registrar_evento(self, evento):
 
@@ -139,6 +173,10 @@ class MonitorIntegridade:
 
     def verificar_integridade(self):
 
+        self.registrar_log(
+            "Executando verificação periódica."
+        )
+
         hashes_antigos = self.carregar_hashes()
 
         hashes_atuais = self.gerar_hashes_atuais()
@@ -155,9 +193,13 @@ class MonitorIntegridade:
 
                 if hash_antigo != hash_novo:
 
-                    self.registrar_evento(
+                    evento = (
                         f"ARQUIVO ALTERADO: {arquivo}"
                     )
+
+                    self.gerar_alerta(evento)
+
+                    self.registrar_evento(evento)
 
         #
         # EXCLUSÃO
@@ -167,9 +209,13 @@ class MonitorIntegridade:
 
             if arquivo not in hashes_atuais:
 
-                self.registrar_evento(
+                evento = (
                     f"ARQUIVO REMOVIDO: {arquivo}"
                 )
+
+                self.gerar_alerta(evento)
+
+                self.registrar_evento(evento)
 
         #
         # INCLUSÃO
@@ -179,9 +225,13 @@ class MonitorIntegridade:
 
             if arquivo not in hashes_antigos:
 
-                self.registrar_evento(
+                evento = (
                     f"NOVO ARQUIVO DETECTADO: {arquivo}"
                 )
+
+                self.gerar_alerta(evento)
+
+                self.registrar_evento(evento)
 
         self.salvar_hashes(hashes_atuais)
 
@@ -195,9 +245,21 @@ class MonitorIntegridade:
 
             self.verificar_integridade()
 
+    def monitorar_continuamente(self, intervalo=30):
+
+        self.registrar_log(
+            f"Monitoramento iniciado. Intervalo: {intervalo} segundos."
+        )
+
+        while True:
+
+            self.executar()
+
+            time.sleep(intervalo)
+
 
 if __name__ == "__main__":
 
     monitor = MonitorIntegridade()
 
-    monitor.executar()
+    monitor.monitorar_continuamente()

@@ -8,20 +8,25 @@ Sistema de Gerenciamento com Menu Interativo
 import os
 import sys
 import getpass
+
 from config import PROJECT_ROOT
 from usuarios.auth import AuthSystem
+from blockchain.blockchain import Blockchain
 
 # Adiciona o diretório raiz ao path
 sys.path.insert(0, PROJECT_ROOT)
 
+
 class MenuPrincipal:
+
     def __init__(self):
         self.auth = AuthSystem()
         self.usuario_logado = None
+        self.blockchain = Blockchain()
 
     def limpar_tela(self):
         """Limpa a tela do console"""
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system("cls" if os.name == "nt" else "clear")
 
     def exibir_banner(self):
         """Exibe o banner inicial"""
@@ -31,20 +36,32 @@ class MenuPrincipal:
 
     def menu_principal(self):
         """Menu principal do sistema"""
+
         while True:
+
             self.limpar_tela()
             self.exibir_banner()
-            
+
             if self.usuario_logado:
-                print(f"\nConectado como: {self.usuario_logado['username']} ({self.usuario_logado['profile']})")
+
+                print(
+                    f"\nConectado como: "
+                    f"{self.usuario_logado['username']} "
+                    f"({self.usuario_logado['profile']})"
+                )
+
                 print("\n" + "-" * 60)
                 print("1. Criar novo usuário")
                 print("2. Listar usuários")
                 print("3. Deletar usuário")
-                print("4. Logout")
-                print("5. Sair")
+                print("4. Ver Blockchain")
+                print("5. Validar Blockchain")
+                print("6. Logout")
+                print("7. Sair")
                 print("-" * 60)
+
             else:
+
                 print("\nNenhum usuário conectado")
                 print("\n" + "-" * 60)
                 print("1. Fazer login")
@@ -55,38 +72,64 @@ class MenuPrincipal:
             opcao = input("\nEscolha uma opção: ").strip()
 
             if self.usuario_logado:
+
                 if opcao == "1":
                     self.criar_usuario()
+
                 elif opcao == "2":
                     self.listar_usuarios()
+
                 elif opcao == "3":
                     self.deletar_usuario()
+
                 elif opcao == "4":
-                    self.logout()
+                    self.ver_blockchain()
+
                 elif opcao == "5":
+                    self.validar_blockchain()
+
+                elif opcao == "6":
+                    self.logout()
+
+                elif opcao == "7":
                     self.sair()
+
                 else:
-                    input("Opção inválida! Pressione Enter para continuar...")
+                    input(
+                        "Opção inválida! Pressione Enter para continuar..."
+                    )
+
             else:
+
                 if opcao == "1":
                     self.fazer_login()
+
                 elif opcao == "2":
                     self.criar_usuario()
+
                 elif opcao == "3":
                     self.sair()
+
                 else:
-                    input("Opção inválida! Pressione Enter para continuar...")
+                    input(
+                        "Opção inválida! Pressione Enter para continuar..."
+                    )
 
     def fazer_login(self):
         """Realiza o login do usuário"""
+
         self.limpar_tela()
         self.exibir_banner()
+
         print("\n--- LOGIN ---\n")
 
         username = input("Usuário: ").strip()
         password = getpass.getpass("Senha: ").strip()
 
-        user, mensagem = self.auth.login(username, password)
+        user, mensagem = self.auth.login(
+            username,
+            password
+        )
 
         if user:
             self.usuario_logado = user
@@ -98,20 +141,24 @@ class MenuPrincipal:
 
     def criar_usuario(self):
         """Cria um novo usuário"""
+
         self.limpar_tela()
         self.exibir_banner()
+
         print("\n--- CRIAR NOVO USUÁRIO ---\n")
 
         username = input("Usuário: ").strip()
         password = getpass.getpass("Senha: ").strip()
-        
+
         print("\nPerfis disponíveis:")
         print("1. admin (Administrador)")
         print("2. analista (Analista)")
         print("3. visitante (Visitante)")
-        
-        perfil_opcao = input("\nEscolha o perfil (1-3): ").strip()
-        
+
+        perfil_opcao = input(
+            "\nEscolha o perfil (1-3): "
+        ).strip()
+
         perfis = {
             "1": "admin",
             "2": "analista",
@@ -125,18 +172,25 @@ class MenuPrincipal:
 
         perfil = perfis[perfil_opcao]
 
-        # Validações básicas
         if not username or not password:
-            print("\nUsuário e senha não podem estar vazios!")
+            print(
+                "\nUsuário e senha não podem estar vazios!"
+            )
             input("Pressione Enter para continuar...")
             return
 
         if len(password) < 6:
-            print("\nSenha deve ter pelo menos 6 caracteres!")
+            print(
+                "\nSenha deve ter pelo menos 6 caracteres!"
+            )
             input("Pressione Enter para continuar...")
             return
 
-        sucesso, mensagem = self.auth.register_user(username, password, perfil)
+        sucesso, mensagem = self.auth.register_user(
+            username,
+            password,
+            perfil
+        )
 
         if sucesso:
             print(f"\n{mensagem}")
@@ -147,22 +201,34 @@ class MenuPrincipal:
 
     def listar_usuarios(self):
         """Lista todos os usuários cadastrados"""
+
         self.limpar_tela()
         self.exibir_banner()
+
         print("\n--- LISTAR USUÁRIOS ---\n")
 
         usuarios, mensagem = self.auth.list_users()
 
         if usuarios:
-            print(f"Total de usuários: {len(usuarios)}\n")
+
+            print(
+                f"Total de usuários: {len(usuarios)}\n"
+            )
+
             print("-" * 50)
-            print(f"{'Usuário':<25} {'Perfil':<20}")
+            print(
+                f"{'Usuário':<25} {'Perfil':<20}"
+            )
             print("-" * 50)
-            
+
             for usuario in usuarios:
-                print(f"{usuario['username']:<25} {usuario['profile']:<20}")
-            
+                print(
+                    f"{usuario['username']:<25} "
+                    f"{usuario['profile']:<20}"
+                )
+
             print("-" * 50)
+
         else:
             print(f"ℹ {mensagem}")
 
@@ -170,31 +236,47 @@ class MenuPrincipal:
 
     def deletar_usuario(self):
         """Deleta um usuário existente"""
+
         self.limpar_tela()
         self.exibir_banner()
+
         print("\n--- DELETAR USUÁRIO ---\n")
 
-        # Proteção para não deletar o próprio usuário
-        if self.usuario_logado['profile'] != 'admin':
-            print("\nApenas administradores podem deletar usuários!")
+        if self.usuario_logado["profile"] != "admin":
+            print(
+                "\nApenas administradores "
+                "podem deletar usuários!"
+            )
             input("Pressione Enter para continuar...")
             return
 
-        username = input("Usuário a deletar: ").strip()
+        username = input(
+            "Usuário a deletar: "
+        ).strip()
 
-        if username == self.usuario_logado['username']:
-            print("\nVocê não pode deletar sua própria conta!")
+        if username == self.usuario_logado["username"]:
+
+            print(
+                "\nVocê não pode deletar "
+                "sua própria conta!"
+            )
+
             input("Pressione Enter para continuar...")
             return
 
-        confirmacao = input(f"Tem certeza que deseja deletar o usuário '{username}'? (s/n): ").strip().lower()
+        confirmacao = input(
+            f"Tem certeza que deseja deletar "
+            f"o usuário '{username}'? (s/n): "
+        ).strip().lower()
 
-        if confirmacao != 's':
+        if confirmacao != "s":
             print("\nOperação cancelada.")
             input("Pressione Enter para continuar...")
             return
 
-        sucesso, mensagem = self.auth.delete_user(username)
+        sucesso, mensagem = self.auth.delete_user(
+            username
+        )
 
         if sucesso:
             print(f"\n{mensagem}")
@@ -203,31 +285,101 @@ class MenuPrincipal:
 
         input("\nPressione Enter para continuar...")
 
+    def ver_blockchain(self):
+        """Exibe a blockchain"""
+
+        self.limpar_tela()
+        self.exibir_banner()
+
+        print(
+            "\n--- BLOCKCHAIN DE AUDITORIA ---\n"
+        )
+
+        self.auth.blockchain.print_chain()
+
+        input("\nPressione Enter para continuar...")
+
+    def validar_blockchain(self):
+        """Valida a integridade da blockchain"""
+
+        self.limpar_tela()
+        self.exibir_banner()
+
+        print(
+            "\n--- VALIDAÇÃO DA BLOCKCHAIN ---\n"
+        )
+
+        valido, bloco, mensagem = (
+            self.blockchain.is_chain_valid()
+        )
+
+        if valido:
+
+            print("✅ BLOCKCHAIN ÍNTEGRA")
+            print(
+                "\nNenhuma inconsistência encontrada."
+            )
+
+        else:
+
+            print("\n🚨 ALERTA DE SEGURANÇA 🚨")
+            print(
+                f"\nBloco corrompido: {bloco}"
+            )
+            print(
+                f"Motivo: {mensagem}"
+            )
+            print(
+                "\nA blockchain pode ter sido adulterada."
+            )
+
+        input("\nPressione Enter para continuar...")
+
     def logout(self):
         """Faz logout do usuário"""
+
         self.usuario_logado = None
-        print("\nLogout realizado com sucesso!")
-        input("Pressione Enter para continuar...")
+
+        print(
+            "\nLogout realizado com sucesso!"
+        )
+
+        input(
+            "Pressione Enter para continuar..."
+        )
 
     def sair(self):
         """Sai do sistema"""
+
         self.limpar_tela()
+
         print("\n" + "=" * 60)
         print(" " * 20 + "Até logo!")
         print("=" * 60 + "\n")
+
         sys.exit(0)
 
 
 def main():
     """Função principal"""
+
     try:
+
         menu = MenuPrincipal()
         menu.menu_principal()
+
     except KeyboardInterrupt:
-        print("\n\nSistema interrompido pelo usuário.")
+
+        print(
+            "\n\nSistema interrompido pelo usuário."
+        )
+
         sys.exit(0)
+
     except Exception as e:
+
         print(f"\nErro: {e}")
+
         sys.exit(1)
 
 
