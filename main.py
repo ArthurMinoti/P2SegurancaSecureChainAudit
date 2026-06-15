@@ -14,14 +14,16 @@ from usuarios.auth import AuthSystem
 # Adiciona o diretório raiz ao path
 sys.path.insert(0, PROJECT_ROOT)
 
+
 class MenuPrincipal:
+
     def __init__(self):
         self.auth = AuthSystem()
         self.usuario_logado = None
 
     def limpar_tela(self):
         """Limpa a tela do console"""
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system("cls" if os.name == "nt" else "clear")
 
     def exibir_banner(self):
         """Exibe o banner inicial"""
@@ -34,15 +36,18 @@ class MenuPrincipal:
         while True:
             self.limpar_tela()
             self.exibir_banner()
-            
+
             if self.usuario_logado:
-                print(f"\nConectado como: {self.usuario_logado['username']} ({self.usuario_logado['profile']})")
+                print(
+                    f"\nConectado como: {self.usuario_logado['username']} ({self.usuario_logado['profile']})"
+                )
                 print("\n" + "-" * 60)
                 print("1. Criar novo usuário")
                 print("2. Listar usuários")
                 print("3. Deletar usuário")
-                print("4. Logout")
-                print("5. Sair")
+                print("4. Ver Blockchain")
+                print("5. Logout")
+                print("6. Sair")
                 print("-" * 60)
             else:
                 print("\nNenhum usuário conectado")
@@ -62,8 +67,10 @@ class MenuPrincipal:
                 elif opcao == "3":
                     self.deletar_usuario()
                 elif opcao == "4":
-                    self.logout()
+                    self.ver_blockchain()
                 elif opcao == "5":
+                    self.logout()
+                elif opcao == "6":
                     self.sair()
                 else:
                     input("Opção inválida! Pressione Enter para continuar...")
@@ -104,19 +111,14 @@ class MenuPrincipal:
 
         username = input("Usuário: ").strip()
         password = getpass.getpass("Senha: ").strip()
-        
+
         print("\nPerfis disponíveis:")
         print("1. admin (Administrador)")
         print("2. analista (Analista)")
         print("3. visitante (Visitante)")
-        
+
         perfil_opcao = input("\nEscolha o perfil (1-3): ").strip()
-        
-        perfis = {
-            "1": "admin",
-            "2": "analista",
-            "3": "visitante"
-        }
+        perfis = {"1": "admin", "2": "analista", "3": "visitante"}
 
         if perfil_opcao not in perfis:
             print("\nPerfil inválido!")
@@ -158,10 +160,10 @@ class MenuPrincipal:
             print("-" * 50)
             print(f"{'Usuário':<25} {'Perfil':<20}")
             print("-" * 50)
-            
+
             for usuario in usuarios:
                 print(f"{usuario['username']:<25} {usuario['profile']:<20}")
-            
+
             print("-" * 50)
         else:
             print(f"ℹ {mensagem}")
@@ -175,21 +177,27 @@ class MenuPrincipal:
         print("\n--- DELETAR USUÁRIO ---\n")
 
         # Proteção para não deletar o próprio usuário
-        if self.usuario_logado['profile'] != 'admin':
+        if self.usuario_logado["profile"] != "admin":
             print("\nApenas administradores podem deletar usuários!")
             input("Pressione Enter para continuar...")
             return
 
         username = input("Usuário a deletar: ").strip()
 
-        if username == self.usuario_logado['username']:
+        if username == self.usuario_logado["username"]:
             print("\nVocê não pode deletar sua própria conta!")
             input("Pressione Enter para continuar...")
             return
 
-        confirmacao = input(f"Tem certeza que deseja deletar o usuário '{username}'? (s/n): ").strip().lower()
+        confirmacao = (
+            input(
+                f"Tem certeza que deseja deletar o usuário '{username}'? (s/n): "
+            )
+            .strip()
+            .lower()
+        )
 
-        if confirmacao != 's':
+        if confirmacao != "s":
             print("\nOperação cancelada.")
             input("Pressione Enter para continuar...")
             return
@@ -201,6 +209,13 @@ class MenuPrincipal:
         else:
             print(f"\n{mensagem}")
 
+        input("\nPressione Enter para continuar...")
+
+    def ver_blockchain(self):
+        self.limpar_tela()
+        self.exibir_banner()
+        print("\n--- BLOCKCHAIN DE AUDITORIA ---\n")
+        self.auth.blockchain.print_chain()
         input("\nPressione Enter para continuar...")
 
     def logout(self):

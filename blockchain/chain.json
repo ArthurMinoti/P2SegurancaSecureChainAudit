@@ -1,0 +1,93 @@
+[
+    {
+        "index": 0,
+        "timestamp": "2026-06-15T10:25:49.288534",
+        "event": "Genesis Block - SecureChain Audit Initialized",
+        "previous_hash": "0",
+        "hash": "466d0523f46544585d54338407d507629ecd6bfc3773436f67c3d84e594e9095"
+    },
+    {
+        "index": 1,
+        "timestamp": "2026-06-15T10:27:19.318169",
+        "event": "NOVO ARQUIVO DETECTADO: teste.txt",
+        "previous_hash": "466d0523f46544585d54338407d507629ecd6bfc3773436f67c3d84e594e9095",
+        "hash": "4033eafd01a2e030a8db96912830d94177d71804d30d424b01b59c75341b6910"
+    },
+    {
+        "index": 2,
+        "timestamp": "2026-06-15T10:27:49.331939",
+        "event": "ARQUIVO ALTERADO: teste.txt",
+        "previous_hash": "4033eafd01a2e030a8db96912830d94177d71804d30d424b01b59c75341b6910",
+        "hash": "009a01598c6dd5169bb2cc539e4ed2d808c2407a5e13ac89b5f434ac26997e5d"
+    },
+    {
+        "index": 3,
+        "timestamp": "2026-06-15T10:28:49.335416",
+        "event": "ARQUIVO REMOVIDO: teste.txt",
+        "previous_hash": "009a01598c6dd5169bb2cc539e4ed2d808c2407a5e13ac89b5f434ac26997e5d",
+        "hash": "15e972399a1531f944db8cbc0322d1ced312c26c8131ad197afa81b86f74cefe"
+    },
+    {
+        "index": 4,
+        "timestamp": "2026-06-15T13:20:26.729518",
+        "event": "Tentativa de login falha: Usu\u00e1rio administrador n\u00e3o encontrado.",
+        "previous_hash": "15e972399a1531f944db8cbc0322d1ced312c26c8131ad197afa81b86f74cefe",
+        "hash": "b625390b7d47a590864be8ebff236b3df434abf26222fe9c5e899aed72b33247"
+    },
+    {
+        "index": 5,
+        "timestamp": "2026-06-15T13:20:37.063724",
+        "event": "Tentativa de login falha: Usu\u00e1rio vboxuser n\u00e3o encontrado.",
+        "previous_hash": "b625390b7d47a590864be8ebff236b3df434abf26222fe9c5e899aed72b33247",
+        "hash": "33f7a1f2a6f008718b6acb8d36d022ffc58d13d0b4013a9d1d22c3880312dfce"
+    },
+    {
+        "index": 6,
+        "timestamp": "2026-06-15T13:20:49.976365",
+        "event": "Tentativa de login falha: Usu\u00e1rio vboxuser n\u00e3o encontrado.",
+        "previous_hash": "33f7a1f2a6f008718b6acb8d36d022ffc58d13d0b4013a9d1d22c3880312dfce",
+        "hash": "ffcf8beb1615ab74f5d9884cdfac07cbcd8cc504c681dc44b232e4ac02830a1d"
+    },
+    {
+        "index": 7,
+        "timestamp": "2026-06-15T13:21:19.439232",
+        "event": "USUARIO CRIADO: lucasms (admin)",
+        "previous_hash": "ffcf8beb1615ab74f5d9884cdfac07cbcd8cc504c681dc44b232e4ac02830a1d",
+        "hash": "86e2302d86ced974d6e2ff102bd10e65a335b9dade42f802a7300b24a0b83c8c"
+    },
+    {
+        "index": 8,
+        "timestamp": "2026-06-15T13:21:29.015955",
+        "event": "LOGIN REALIZADO: lucasms (admin)",
+        "previous_hash": "86e2302d86ced974d6e2ff102bd10e65a335b9dade42f802a7300b24a0b83c8c",
+        "hash": "cb46e9cf7582766b40aedde857192fa73535c3e30cb1c968f804c32062054f8d"
+    },
+    {
+        "index": 9,
+        "timestamp": "2026-06-15T13:24:32.176118",
+        "event": "LOGIN REALIZADO: lucasms (admin)",
+        "previous_hash": "cb46e9cf7582766b40aedde857192fa73535c3e30cb1c968f804c32062054f8d",
+        "hash": "d17088302237d47a0f0729cabceee5da1ef9dc09211c774a5f82c7224ff650be"
+    },
+    {
+        "index": 10,
+        "timestamp": "2026-06-15T13:26:41.166641",
+        "event": "LOGIN REALIZADO: lucasms (admin)",
+        "previous_hash": "d17088302237d47a0f0729cabceee5da1ef9dc09211c774a5f82c7224ff650be",
+        "hash": "6da065fcf1fb31f49104253bd93c56059e9821669deea0a059da6901c13273a2"
+    },
+    {
+        "index": 11,
+        "timestamp": "2026-06-15T13:32:14.814125",
+        "event": "LOGIN REALIZADO: lucasms (admin)",
+        "previous_hash": "6da065fcf1fb31f49104253bd93c56059e9821669deea0a059da6901c13273a2",
+        "hash": "fbdeb4cdc9aa498c7ab46d44a6e732011ef4e15ed14a58fd3906af0b6ff1c3ed"
+    },
+    {
+        "index": 12,
+        "timestamp": "2026-06-15T13:32:52.928577",
+        "event": "LOGIN REALIZADO: lucasms (admin)",
+        "previous_hash": "fbdeb4cdc9aa498c7ab46d44a6e732011ef4e15ed14a58fd3906af0b6ff1c3ed",
+        "hash": "05e4f4993f8c03709fcb5074c2f9d3e82f7a5e93f26d9533447c48112c961130"
+    }
+]
