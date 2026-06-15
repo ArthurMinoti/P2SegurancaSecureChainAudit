@@ -11,3 +11,4 @@ USERS_DB = os.path.join(USERS_FOLDER, 'users.json')
 HASH_DB = os.path.join(LOGS_FOLDER,'hashes.json')
 HASH_DB = os.path.join(DOCUMENTS_FOLDER, 'hashes.json')
 CHAIN_FILE = os.path.join(BLOCKCHAIN_FOLDER, 'chain.json')
+BACKUP_PASSWORD = "123456"

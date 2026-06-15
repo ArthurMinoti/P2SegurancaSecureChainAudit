@@ -5,5 +5,12 @@
         "event": "Genesis Block - SecureChain Audit Initialized",
         "previous_hash": "0",
         "hash": "16f2e348a7797cfd52fd8f77f545a891d0179d397ae40d65102a30b751a8e73c"
+    },
+    {
+        "index": 1,
+        "timestamp": "2026-06-15T14:12:39.081374",
+        "event": "BACKUP EXECUTADO COM SUCESSO",
+        "previous_hash": "16f2e348a7797cfd52fd8f77f545a891d0179d397ae40d65102a30b751a8e73c",
+        "hash": "23db35959e9fe344a004b9e5b65dea591aa180fec81048456fd849f447eaa5e3"
     }
 ]
