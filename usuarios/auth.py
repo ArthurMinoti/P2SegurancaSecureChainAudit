@@ -28,9 +28,12 @@ class AuthSystem:
     def register_user(self, username, password, profile):
         if username in self.users:
             return False, "Usuário já existe."
-        
         if profile not in ['admin', 'analista', 'visitante']:
             return False, "Perfil inválido."
+        if len(username) > 30:
+            return False, "Usuário muito longo."
+        if len(password) < 6:
+            return False, "Senha deve ter pelo menos 6 caracteres."
 
         # Hash da senha com bcrypt
         salt = bcrypt.gensalt()
