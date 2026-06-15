@@ -68,5 +68,19 @@
         "event": "USUARIO REMOVIDO: asdasd",
         "previous_hash": "22afe1d884487af5acf05cfdaefde12d0c46e386ed163302ea01d6953cf78774",
         "hash": "928a220861e29366f123d1502c245c43a62896d9bb923b9e7cf965cf3d26ae3a"
+    },
+    {
+        "index": 10,
+        "timestamp": "2026-06-15T15:20:20.849131",
+        "event": "USUARIO CRIADO: usuario1 (analista)",
+        "previous_hash": "928a220861e29366f123d1502c245c43a62896d9bb923b9e7cf965cf3d26ae3a",
+        "hash": "d05227f5e5d9e881b354bab13612efefa6b7e2d1f939c1aa058e2a82739c3dd6"
+    },
+    {
+        "index": 11,
+        "timestamp": "2026-06-15T15:20:57.264509",
+        "event": "LOGIN REALIZADO: usuario1 (analista)",
+        "previous_hash": "d05227f5e5d9e881b354bab13612efefa6b7e2d1f939c1aa058e2a82739c3dd6",
+        "hash": "98da8d8e2420bfe7c8f21f9932207d869588e1d1d30b7162d67bf9163b31d1c4"
     }
 ]
